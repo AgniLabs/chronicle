@@ -44,5 +44,8 @@
     "typescript": "^5",
     "vercel": "^34.0.0",
     "wrangler": "^3.50.0"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }
