@@ -27,25 +27,27 @@ export const viewport: Viewport = {
 	],
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+	children,
+}: Readonly<{ children: React.ReactNode }>) {
 	return (
-	  <html lang="en">
-		<head />
-		<body
-		  className={cn(
-			"min-h-screen bg-background font-sans antialiased",
-			GeistSans.variable,
-			GeistMono.variable
-		  )}
-		>
-		  <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-			<div className="flex flex-col min-h-screen">
-			  <SiteHeader />
-			  <main className="flex-grow overflow-auto mt-16">{children}</main>
-			</div>
-			<TailwindIndicator />
-		  </ThemeProvider>
-		</body>
-	  </html>
+		<html lang="en">
+			<head />
+			<body
+				className={cn(
+					"min-h-screen bg-background font-sans antialiased",
+					GeistSans.variable,
+					GeistMono.variable,
+				)}
+			>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					<div className="flex flex-col min-h-screen">
+						<SiteHeader />
+						<main className="flex-grow overflow-auto mt-16">{children}</main>
+					</div>
+					<TailwindIndicator />
+				</ThemeProvider>
+			</body>
+		</html>
 	);
-  }
+}

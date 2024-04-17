@@ -2,5 +2,5 @@
 // by running `wrangler types --env-interface CloudflareEnv env.d.ts`
 
 interface CloudflareEnv {
-  NI_DB: D1Database;
+	NI_DB: D1Database;
 }

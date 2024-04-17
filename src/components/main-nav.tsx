@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
-import { NavItem } from "@/types/nav";
+import type { NavItem } from "@/types/nav";
 import Link from "next/link";
 
 interface MainNavProps {

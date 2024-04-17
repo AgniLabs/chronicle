@@ -1,4 +1,4 @@
-import { Loader2, Moon, SunMedium, type LucideProps } from "lucide-react";
+import { Loader2, type LucideProps, Moon, SunMedium } from "lucide-react";
 import type dynamicIconImports from "lucide-react/dynamicIconImports";
 import Image from "next/image";
 
@@ -17,16 +17,16 @@ export const Icons = {
 	moon: Moon,
 	newsImagesLogo: (props: LucideProps) => (
 		<div>
-		  <Image
-			className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-			src="/news-images-logo.svg"
-			alt="Next.js Logo"
-			width={50}
-			height={50}
-			priority
-		  />
+			<Image
+				className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+				src="/news-images-logo.svg"
+				alt="Next.js Logo"
+				width={50}
+				height={50}
+				priority
+			/>
 		</div>
-	  ),
+	),
 	logo: (props: LucideProps) => (
 		// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 50 50" {...props}>

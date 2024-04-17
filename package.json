@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "pages:build": "bunx @cloudflare/next-on-pages",
     "preview": "bun pages:build && wrangler pages dev .vercel/output/static",
     "deploy": "bun pages:build && wrangler pages deploy .vercel/output/static",
@@ -19,6 +20,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "geist": "^1.2.1",
+    "lint-staged": "^15.2.2",
     "lucide-react": "^0.316.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
@@ -30,6 +32,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.0",
     "@cloudflare/next-on-pages": "^1.11.0",
     "@cloudflare/workers-types": "^4.20240405.0",
     "@types/node": "^20",
