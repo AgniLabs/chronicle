@@ -14,5 +14,6 @@ export const siteConfig = {
 	},
 	creator: "@AgniLabs",
 	url: "https://newsimages.agnilabs.xyz",
-	ogImage: "https://newsimages.agnilabs.xyz/newsimages-OG.png",
+	ogImage: "https://newsimages.agnilabs.xyz/ni-og.png",
+	logoUrl: "https://newsimages.agnilabs.xyz/news-images-logo.svg",
 };
