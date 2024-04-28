@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ThirdwebProvider } from "@/components/thirdweb/thirdweb";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -18,6 +19,22 @@ export const metadata: Metadata = {
 		icon: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
 	},
+	openGraph: {
+		title: siteConfig.name,
+		description: siteConfig.description,
+		url: siteConfig.url,
+		siteName: siteConfig.name,
+		images: [
+		  {
+			url: siteConfig.ogImage,
+			width: 800,
+			height: 600,
+			alt: siteConfig.description,
+		  },
+		],
+		locale: 'en_US',
+		type: 'website',
+	  },
 };
 
 export const viewport: Viewport = {
@@ -41,11 +58,13 @@ export default function RootLayout({
 				)}
 			>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					<ThirdwebProvider>
 					<div className="flex flex-col min-h-screen">
 						<SiteHeader />
 						<main className="flex-grow overflow-auto mt-16">{children}</main>
 					</div>
 					<TailwindIndicator />
+					</ThirdwebProvider>
 				</ThemeProvider>
 			</body>
 		</html>

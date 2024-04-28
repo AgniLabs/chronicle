@@ -8,7 +8,7 @@ export async function GET() {
 
 		if (result) {
 			return Response.json({
-				articleData: result?.articleData,
+				articleData: result?.firstCompleteArticle,
 				base64ImageData: result?.b64json,
 			});
 		}

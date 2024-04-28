@@ -1,20 +1,9 @@
-import type { Source } from "@/types/news-api";
+import type { Article } from "@/types/news-api";
 import { getNewsData } from "../news-api/newsService";
 import { generateImage, generatePrompt } from "../openai-api/openAIService";
 
-interface articleData {
-	author: string | null;
-	title: string;
-	description: string | null;
-	url: string;
-	url_to_image: string | null;
-	published_at: string;
-	content: string | null;
-	source_id: Source;
-}
-
 interface HandleGetImageResponse {
-	articleData: articleData;
+	firstCompleteArticle: Article | undefined;
 	b64json: string;
 }
 
@@ -23,7 +12,7 @@ export async function handleGetImage(): Promise<
 > {
 	try {
 		console.log("getting news data");
-		const newsData = await getNewsData(); // Assuming this returns NewsResponse
+		const newsData = await getNewsData();
 		if (newsData.status !== "ok" || !newsData.articles.length) {
 			throw new Error("No articles found or bad response");
 		}
@@ -69,34 +58,24 @@ export async function handleGetImage(): Promise<
 		// const base64ImageData = obj.imageData;
 
 		console.log("inputting into promptData");
-		// TODO: INCORPORATE THIRDWEB HERE
+		// TODO: Save prompt data
 
 		console.log("inputting into imageData");
-		// TODO: INCORPORATE THIRDWEB HERE
+		// TODO: save image data
 
-		const articleData = {
-			author: firstCompleteArticle.author,
-			title: firstCompleteArticle.title,
-			description: firstCompleteArticle.description,
-			url: firstCompleteArticle.url,
-			url_to_image: firstCompleteArticle.urlToImage,
-			published_at: firstCompleteArticle.publishedAt,
-			content: firstCompleteArticle.content,
-			source_id: firstCompleteArticle.source,
-		};
-
-		// Insert article with all references
 		console.log("inserting articleData");
-		// TODO: INCORPORATE THIRDWEB HERE
+		// TODO: save article data
+
+		console.log("");
 
 		console.log("All data stored successfully in Supabase");
 		console.log("Returning data: ", {
-			articleData,
+			firstCompleteArticle,
 			b64json,
 		});
 
 		return {
-			articleData,
+			firstCompleteArticle,
 			b64json,
 		};
 	} catch (error) {

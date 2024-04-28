@@ -9,6 +9,9 @@
 			"recommended": true
 		}
 	},
+	"formatter": {
+		"enabled": true
+	},
 	"files": {
 		"include": ["src/**/*.js", "src/**/*.ts"],
 		"ignore": ["node_modules/**", "bun.lockb", "./.next", "./vercel"]
