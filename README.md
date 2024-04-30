@@ -1,6 +1,6 @@
-# 📰 newsimages
+# 📰 chronicle
 
-This is the repository for newsimages, a place where you can own a piece of history
+This is the repository for chronicle, a place where you can own a piece of history
 
 ## Getting Started
 

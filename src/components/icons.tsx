@@ -1,4 +1,4 @@
-import { Loader2, type LucideProps, Moon, SunMedium } from "lucide-react";
+import { Loader2, Moon, SunMedium, type LucideProps } from "lucide-react";
 import type dynamicIconImports from "lucide-react/dynamicIconImports";
 import Image from "next/image";
 
@@ -15,7 +15,7 @@ interface IconProps extends LucideProps {
 export const Icons = {
 	sun: SunMedium,
 	moon: Moon,
-	newsImagesLogo: (props: LucideProps) => (
+	chronicleLogo: (props: LucideProps) => (
 		<div>
 			<Image
 				className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
