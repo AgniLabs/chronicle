@@ -2,7 +2,7 @@ import type { Article } from "@/types/news-api";
 import { getNewsData } from "../news-api/newsService";
 import { generateImage, generatePrompt } from "../openai-api/openAIService";
 
-interface HandleGetImageResponse {
+export interface HandleGetImageResponse {
 	firstCompleteArticle: Article | undefined;
 	b64json: string;
 }
@@ -49,7 +49,7 @@ export async function handleGetImage(): Promise<
 		if (!imageResponseb64_json) {
 			throw new Error("Image not generated");
 		}
-		console.log("imageResponseb64_json: ", imageResponseb64_json);
+		console.log(`imageResponseb64_json: , ${!!imageResponseb64_json}`);
 
 		// Extract and parse the image data
 		console.log("extracting image data");

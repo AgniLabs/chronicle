@@ -5,15 +5,18 @@ import {
 	CardHeader,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { HandleGetImageResponse } from "@/services/handle-get-image/handle-get-image";
 import Image from "next/image";
 
-async function fetchData() {
+async function fetchData(): Promise<
+HandleGetImageResponse | undefined
+> {
 	try {
 		const response = await fetch("/api/handle-get-image");
 		return response.json();
 	} catch (error) {
 		console.error("Failed to fetch data:", error);
-		return null;
+		throw new Error(`Failed to fetch data:", ${error}`)
 	}
 }
 
@@ -25,7 +28,7 @@ export default async function ImageDisplay() {
 			return <div>No data available</div>;
 		}
 
-		const { articleData, base64ImageData } = data;
+		const { firstCompleteArticle: articleData, b64json } = data;
 
 		return (
 			<div className="container mx-auto p-4">
@@ -37,13 +40,13 @@ export default async function ImageDisplay() {
 							</h2>
 							<div className="text-sm text-gray-500 mb-4">
 								{articleData.author} -{" "}
-								{new Date(articleData.published_at).toLocaleDateString()}
+								{new Date(articleData.publishedAt).toLocaleDateString()}
 							</div>
 						</CardHeader>
 						<CardContent>
-							{base64ImageData ? (
+							{b64json ? (
 								<Image
-									src={base64ImageData}
+									src={b64json}
 									alt={articleData.title}
 									className="mx-auto my-4 rounded-lg"
 									height={500}

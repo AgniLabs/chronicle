@@ -8,7 +8,8 @@ export const env = createEnv({
 		OPENAI_SECRET_KEY: z.string().min(1),
 		OPENAI_ORG_ID: z.string().min(1),
 		NI_NFT_CONTRACT: z.string().min(1),
-		NI_NFT_SECRET_KEY: z.string().min(1),
+		THIRDWEB_SECRET_KEY: z.string().min(1),
+		NI_MKT_CONTRACT: z.string().min(1),
 	},
 	client: {
 		NEXT_PUBLIC_NI_NFT_CLIENT_ID: z.string().min(1),
