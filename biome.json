@@ -13,7 +13,7 @@
 		"enabled": true
 	},
 	"files": {
-		"include": ["src/**/*.js", "src/**/*.ts"],
+		"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "src/**/*.jsx"],
 		"ignore": ["node_modules/**", "bun.lockb", "./.next", "./vercel"]
 	}
 }

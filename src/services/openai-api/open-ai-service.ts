@@ -9,7 +9,7 @@ const openai = new OpenAI({
 export async function generatePrompt(userPrompt: string) {
 	console.log("Calling Prompt");
 	const response = await openai.chat.completions.create({
-		model: "gpt-3.5-turbo-0125",
+		model: "gpt-4o",
 		messages: [
 			{
 				role: "system",
@@ -29,6 +29,7 @@ export async function generatePrompt(userPrompt: string) {
 
 export async function generateImage(userPrompt: string) {
 	const imageResponse = await openai.images.generate({
+		// TODO: change to gpt-4o once it's available
 		model: "dall-e-3",
 		prompt: userPrompt,
 		n: 1,

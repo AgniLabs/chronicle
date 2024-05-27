@@ -8,6 +8,8 @@ import "@/styles/globals.css";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
+import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(siteConfig.url),
@@ -26,16 +28,16 @@ export const metadata: Metadata = {
 		url: siteConfig.url,
 		siteName: siteConfig.name,
 		images: [
-		  {
-			url: siteConfig.ogImage,
-			width: 800,
-			height: 600,
-			alt: siteConfig.description,
-		  },
+			{
+				url: siteConfig.ogImage,
+				width: 800,
+				height: 600,
+				alt: siteConfig.description,
+			},
 		],
-		locale: 'en_US',
-		type: 'website',
-	  },
+		locale: "en_US",
+		type: "website",
+	},
 };
 
 export const viewport: Viewport = {
@@ -58,13 +60,15 @@ export default function RootLayout({
 					GeistMono.variable,
 				)}
 			>
+				<NextTopLoader showSpinner={false} />
+				<Toaster />
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<ThirdwebProvider>
-					<div className="flex flex-col min-h-screen">
-						<SiteHeader />
-						<main className="flex-grow overflow-auto mt-16">{children}</main>
-					</div>
-					<TailwindIndicator />
+						<div className="flex flex-col min-h-screen">
+							<SiteHeader />
+							<main className="flex-grow overflow-auto mt-16">{children}</main>
+						</div>
+						<TailwindIndicator />
 					</ThirdwebProvider>
 				</ThemeProvider>
 			</body>

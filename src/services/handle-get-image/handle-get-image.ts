@@ -1,6 +1,6 @@
 import type { Article } from "@/types/news-api";
-import { getNewsData } from "../news-api/newsService";
-import { generateImage, generatePrompt } from "../openai-api/openAIService";
+import { getNewsData } from "../news-api/news-service";
+import { generateImage, generatePrompt } from "../openai-api/open-ai-service";
 
 export interface HandleGetImageResponse {
 	firstCompleteArticle: Article | undefined;

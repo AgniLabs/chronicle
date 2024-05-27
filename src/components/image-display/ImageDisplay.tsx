@@ -5,18 +5,16 @@ import {
 	CardHeader,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { HandleGetImageResponse } from "@/services/handle-get-image/handle-get-image";
+import type { HandleGetImageResponse } from "@/services/handle-get-image/handle-get-image";
 import Image from "next/image";
 
-async function fetchData(): Promise<
-HandleGetImageResponse | undefined
-> {
+async function fetchData(): Promise<HandleGetImageResponse | undefined> {
 	try {
 		const response = await fetch("/api/handle-get-image");
 		return response.json();
 	} catch (error) {
 		console.error("Failed to fetch data:", error);
-		throw new Error(`Failed to fetch data:", ${error}`)
+		throw new Error(`Failed to fetch data:", ${error}`);
 	}
 }
 

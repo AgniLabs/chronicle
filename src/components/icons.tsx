@@ -1,4 +1,4 @@
-import { Loader2, Moon, SunMedium, type LucideProps } from "lucide-react";
+import { Loader2, type LucideProps, Moon, SunMedium } from "lucide-react";
 import type dynamicIconImports from "lucide-react/dynamicIconImports";
 import Image from "next/image";
 
