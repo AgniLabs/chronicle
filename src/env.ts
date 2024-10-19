@@ -7,15 +7,12 @@ export const env = createEnv({
 		NEWS_API_API_KEY: z.string().min(32),
 		OPENAI_SECRET_KEY: z.string().min(1),
 		OPENAI_ORG_ID: z.string().min(1),
-		NI_NFT_CONTRACT: z.string().min(1),
-		THIRDWEB_SECRET_KEY: z.string().min(1),
-		NI_MKT_CONTRACT: z.string().min(1),
+		CHRONICLE_R2_ENDPOINT: z.string().url(),
+		CHRONICLE_R2_ACCESS_ID: z.string().min(1),
+		CHRONICLE_R2_SECRET_KEY: z.string().min(1),
+		CHRONICLE_R2_BUCKET_NAME: z.string().min(1),
 	},
-	client: {
-		NEXT_PUBLIC_NI_NFT_CLIENT_ID: z.string().min(1),
-	},
+	client: {},
 	// For Next.js >= 13.4.4, you only need to destructure client variables:
-	experimental__runtimeEnv: {
-		NEXT_PUBLIC_NI_NFT_CLIENT_ID: process.env.NEXT_PUBLIC_NI_NFT_CLIENT_ID,
-	},
+	experimental__runtimeEnv: {},
 });

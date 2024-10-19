@@ -1,10 +1,13 @@
-import type { Article } from "@/types/news-api";
+import { transformArticleToChronicleEntry } from "@/lib/utils/utils";
+import type { ChronicleTableEntryInsert } from "@/types/cloudflare/d1-db";
+import { insertChronicleEntry } from "../cloudflare/d1/insert-chronicle-entry";
+import { uploadImageToR2 } from "../cloudflare/r2/upload-to-r2";
 import { getNewsData } from "../news-api/newsService";
 import { generateImage, generatePrompt } from "../openai-api/openAIService";
 
 export interface HandleGetImageResponse {
-	firstCompleteArticle: Article | undefined;
-	b64json: string;
+	firstCompleteArticle: ChronicleTableEntryInsert;
+	presignedUrl?: string;
 }
 
 export async function handleGetImage(): Promise<
@@ -45,38 +48,50 @@ export async function handleGetImage(): Promise<
 
 		// Generate image based on the prompt
 		console.log("getting image generation");
-		const imageResponseb64_json = await generateImage(promptResponse);
-		if (!imageResponseb64_json) {
+		const imageUrl = await generateImage(promptResponse);
+		if (!imageUrl) {
 			throw new Error("Image not generated");
 		}
-		console.log(`imageResponseb64_json: , ${!!imageResponseb64_json}`);
 
-		// Extract and parse the image data
-		console.log("extracting image data");
-		const b64json = `{"imageData":"data:image/png;base64,${imageResponseb64_json}"}`;
-		// const obj = JSON.parse(b64json);
-		// const base64ImageData = obj.imageData;
+		console.log("fetching image from OpenAI");
+		const imageResponse = await fetch(imageUrl);
+		const imageBuffer = await imageResponse.arrayBuffer();
 
-		console.log("inputting into promptData");
-		// TODO: Save prompt data
+		// Generate a filename
+		const filename = `dalle-${Date.now()}-${firstCompleteArticle.title
+			.replace(/[^a-z0-9]/gi, "_")
+			.toLowerCase()}.png`;
 
-		console.log("inputting into imageData");
-		// TODO: save image data
+		// Upload the image to R2
+		console.log("uploading image to R2");
+		const r2ImageUrl = await uploadImageToR2(imageBuffer, filename);
 
-		console.log("inserting articleData");
-		// TODO: save article data
-
-		console.log("");
-
-		console.log("All data stored successfully in Supabase");
-		console.log("Returning data: ", {
+		console.log("inserting articleData & promptData");
+		const chronicleEntry = transformArticleToChronicleEntry(
 			firstCompleteArticle,
-			b64json,
-		});
+			"ok",
+			1,
+			promptResponse,
+			r2ImageUrl,
+			filename,
+		);
+
+		console.log("inserting article data, prompt data, and image URL");
+		try {
+			await insertChronicleEntry(chronicleEntry);
+			console.log("inserted article data, prompt data, and image URL");
+		} catch (dbError) {
+			console.error("Error inserting into DB:", dbError);
+			throw new Error("Failed to insert article data into DB");
+		}
+
+		console.log(
+			"All data stored successfully in Cloudflare ==> Returning data",
+		);
 
 		return {
-			firstCompleteArticle,
-			b64json,
+			firstCompleteArticle: chronicleEntry,
+			presignedUrl: r2ImageUrl,
 		};
 	} catch (error) {
 		throw new Error("An error occurred:");

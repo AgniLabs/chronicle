@@ -14,9 +14,12 @@
     "build-cf-types": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.620.0",
+    "@aws-sdk/s3-request-presigner": "^3.620.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
     "@t3-oss/env-nextjs": "^0.9.2",
+    "caniuse-lite": "",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "geist": "^1.2.1",
@@ -24,17 +27,16 @@
     "lucide-react": "^0.316.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
-    "openai": "^4.32.0",
+    "openai": "^4.67.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "thirdweb": "^5.6.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.0",
-    "@cloudflare/next-on-pages": "^1.11.0",
+    "@cloudflare/next-on-pages": "latest",
     "@cloudflare/workers-types": "^4.20240405.0",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -47,7 +49,7 @@
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
     "vercel": "^34.0.0",
-    "wrangler": "^3.50.0"
+    "wrangler": "latest"
   },
   "resolutions": {
     "string-width": "4.2.3"

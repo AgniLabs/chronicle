@@ -6,13 +6,12 @@ export async function GET() {
 	try {
 		const result = await handleGetImage();
 
-		if (result) {
-			return Response.json({
-				articleData: result?.firstCompleteArticle,
-				base64ImageData: result?.b64json,
-			});
-		}
-		console.log("No data available");
+		return new Response(JSON.stringify(result), {
+			status: 200,
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 	} catch (error) {
 		console.error("Failed to fetch data:", error);
 		throw new Error(`Failed to fetch data:", ${error}`);

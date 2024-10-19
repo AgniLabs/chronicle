@@ -16,7 +16,6 @@ This is the repository for chronicle, a place where you can own a piece of histo
 - [shadcn/ui](https://ui.shadcn.com/)
 - [OpenAI API](https://platform.openai.com/docs/introduction)
 - [NewsAPI](https://newsapi.org/docs)
-- [Thirdweb](https://portal.thirdweb.com/)
 
 ### 🏃 Up and running
 
