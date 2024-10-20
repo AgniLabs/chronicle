@@ -1,4 +1,4 @@
-import { env } from "@/env";
+import { env } from "@/env/server";
 import type { NewsResponse } from "@/types/news-api";
 
 export async function getNewsData(): Promise<NewsResponse> {

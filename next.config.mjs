@@ -1,7 +1,11 @@
-import { fileURLToPath } from "node:url";
 import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
 import createJiti from "jiti";
+import { fileURLToPath } from "node:url";
+
 const jiti = createJiti(fileURLToPath(import.meta.url));
+
+// Import env here to validate during build. Using jiti we can import .ts files :)
+jiti("./src/env");
 
 // Here we use the @cloudflare/next-on-pages next-dev module to allow us to use bindings during local development
 // (when running the application with `next dev`), for more information see:
@@ -9,8 +13,6 @@ const jiti = createJiti(fileURLToPath(import.meta.url));
 if (process.env.NODE_ENV === "development") {
 	await setupDevPlatform();
 }
-// Import env here to validate during build. Using jiti we can import .ts files :)
-jiti("./src/env");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

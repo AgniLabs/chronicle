@@ -12,7 +12,7 @@ export const env = createEnv({
 		CHRONICLE_R2_SECRET_KEY: z.string().min(1),
 		CHRONICLE_R2_BUCKET_NAME: z.string().min(1),
 	},
-	client: {},
-	// For Next.js >= 13.4.4, you only need to destructure client variables:
-	experimental__runtimeEnv: {},
+	// If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manuall
+	// For Next.js >= 13.4.4, you can just reference process.env:
+	experimental__runtimeEnv: process.env,
 });

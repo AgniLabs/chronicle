@@ -1,4 +1,4 @@
-import { env } from "@/env";
+import { env } from "@/env/server";
 import OpenAI, { OpenAIError } from "openai";
 
 const openai = new OpenAI({

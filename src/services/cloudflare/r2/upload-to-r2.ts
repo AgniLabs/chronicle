@@ -1,4 +1,4 @@
-import { env } from "@/env";
+import { env } from "@/env/server";
 import { r2 } from "@/services/cloudflare/r2/r2";
 import { GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
