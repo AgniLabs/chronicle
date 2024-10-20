@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 const jiti = createJiti(fileURLToPath(import.meta.url));
 
 // Import env here to validate during build. Using jiti we can import .ts files :)
-jiti("./src/env");
+jiti("./src/env/server");
+jiti("./src/env/client");
 
 // Here we use the @cloudflare/next-on-pages next-dev module to allow us to use bindings during local development
 // (when running the application with `next dev`), for more information see:
